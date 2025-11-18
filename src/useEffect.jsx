@@ -71,7 +71,7 @@ function UseEffect() {
   const [showTimer, setShowTimer] = useState(false);
 
   return (
-    <div className='app'>
+    <div>
         
         {/* <Timer /> */}
 

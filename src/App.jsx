@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
 // import reactLogo from './assets/react.svg'
@@ -70,48 +70,14 @@ function App() {
   }
 
 
-
-  // useEffect란: 화면에 첫 랜더링되었을 때(마운트), 다시 랜더링될 때(업데이트), 화면에서 사라질 떼(언마운트) 특정작업을 처리할 코드를 실행시켜주고싶을 때 사용. 
-  // 예를 들어 
-  // 페이지가 처음 열릴 때만 실행되게 하고 싶다
-  // 우리가 만든 todos가 바뀔 때마다 콘솔에 출력되게 하고 싶다
-  // 특정 값이 바뀌면 서버에 요청을 보내고 싶다
-  // 특정 값이 바뀌면 알림을 띄우고 싶다
-
-  // 이런 행동을 하게 해주는 것이 바로 useEffect입니다.
-
-
-  // const [count, setCount] = useState(1);
-  // const handleCountUpdate = ()=> {
-  //   setCount(count + 1)
-  // }
-
-  // 1. 랜더링 될 때마다 매번 실행됨 
-  // useEffect(()=> {
-  //   console.log('핼로')
-  // });
-
-// 2. 첫 실행(마운팅) + todos 변경될 때마다 실행:
-  useEffect(()=> {
-    console.log('리스트 추가됨')
-  }, [todos]);
-
-// 3. 첫 실행(마운팅) 때만 랜더링 하고 그 이후에는 랜더링하고싶지 않다면 빈 배열로 해주기
-  useEffect(()=> {
-    console.log('처음만 실행')
-  }, [])
-
-  // 4. clearUp 
-
-
-
-
   // 3. 할일 삭제 함수 (이해하기 쉬운 버전)
   // function deleteTodo(deleteIndex) {
   //   const newTodos = [...todos]   // 기존 배열 그대로 복사
   //   newTodos.splice(deleteIndex, 1) // 클릭한 deleteIndex 1개 삭제
   //   setTodos(newTodos) //새 배열로 상태 업데이트
   // }
+// 참고링크 : 
+  // https://gymcoding.notion.site/e8aef473da214b608f9de7616cffb310
 
   // filter 함수로 만든 버전 
   function deleteTodo(deleteIndex) {
