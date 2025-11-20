@@ -135,6 +135,89 @@
   backdrop-filter: blur(10px);
 }
 
+/* 체크박스 스타일 */
+.todo-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+  accent-color: #996ED3;
+  vertical-align: middle;
+}
+
+/* 할 일 텍스트 */
+.todo-item span {
+  flex: 1;
+  vertical-align: middle;
+}
+
+/* 수정 버튼 */
+.edit-btn {
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px 8px;
+  background: transparent;
+  color: #999;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+  color: #666;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* 저장 버튼 */
+.save-btn {
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px 12px;
+  background: #996ED3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+  background: #8555c7;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* 취소 버튼 */
+.cancel-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px 12px;
+  background: #ddd;
+  color: #666;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: #ccc;
+  color: #333;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* 삭제 버튼 */
 .delete-btn {
   position: absolute;
   right: 10px;
@@ -144,8 +227,67 @@
   border: none;
   color: #999;
   font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
+
+.delete-btn:hover {
+  color: #ff6b6b;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* 체크된 항목 스타일 */
 .todo-item:has(input:checked) {
   background:#BFA2F2;  
   color: white;
+}
+
+/* 수정 중일 때 입력창 스타일 */
+.todo-item input[type="text"] {
+  width: calc(100% - 150px);
+  padding: 8px 12px;
+  border: 2px solid #BFA2F2;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.todo-item input[type="text"]:focus {
+  border-color: #996ED3;
+  box-shadow: 0 0 0 3px rgba(191, 162, 242, 0.2);
+}
+
+/* 필터 버튼 영역 */
+.filter-wrap {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  /* justify-content: center; */
+}
+
+/* 필터 버튼 */
+.filter-btn {
+  padding: 8px 20px;
+  border: 2px solid #ddd;
+  background: white;
+  color: #666;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  border-color: #BFA2F2;
+  color: #996ED3;
+  background: #F5EDFA;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #BFA2F2 0%, #996ED3 100%);
+  color: white;
+  border-color: #996ED3;
 }
