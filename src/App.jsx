@@ -236,7 +236,7 @@ function App() {
 
 
       {/* TodoList  */}
-      <h1 className='title'>Todo List</h1>
+      <h1 className='title'>Todo List(할일)</h1>
 
       <div className='contents'>
         <TodoInput onAddTodo={addTodo} />
