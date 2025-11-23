@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
 // import reactLogo from './assets/react.svg'
@@ -53,7 +53,61 @@ import './App.css'
 
 function App() {
    // 1. 모든 할 일 목록을 저장하는 상태
-  const [todos, setTodos] = useState([]);
+  // const [todos, setTodos] = useState([]);
+
+
+  // 7. 로컬 스토리지에 할일 목록 저장하기
+
+  // 처음 열 때 로컬 스토리지에서 불러오기 
+  const [todos, setTodos] = useState(()=> {
+    // localStorage에 'todos' 라는 이름으로 저장된 게 있는지 확인 
+    const saved = localStorage.getItem("todos");
+
+    // 만약 있으면 JSON 문자열을 다시 객체/배열로 변환해서 반환 
+    if(saved) {
+      return JSON.parse(saved)
+    }
+    // 없으면 빈 배열 반환
+    return []
+  });
+
+  // todos 상태가 바뀔 때마다 localStorage에 저장
+  useEffect(()=> {
+    // 원래 배열인 todos를 문자열로 바꿔서 저장
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  // 여기서 JSON은 "JavaScript Object Notation", 
+  // 데이터를 저장하거나 전송할 때 사용하는 경량의 데이터 교환 형식. 
+  // 쉽개 말하면 자바스크립트 객체나 배열을 글자로 바꾼 것
+
+  // 글자로 바꾸는 이유는 
+  // localStorage가 글자 형태로만 데이터를 저장할 수 있기 때문
+  //   예를 들어 우리가 저장하고 싶은 데이터는 
+  //   [
+  //   { id: "1", text: "숙제하기", done: false },
+  //   { id: "2", text: "청소하기", done: true }
+  // ]
+  // 이건 배열 + 객체 형태라서 그대로 저장할 수 없어요.
+
+  // 그래서 JSON.stringify() 함수를 사용해서
+  // 이 데이터를 글자 형태로 바꿔서 저장하는 거예요.
+  // "[{\"id\":\"1\",\"text\":\"숙제하기\",\"done\":false}, ...]"
+
+  // 그리고 나중에 불러올 때는 JSON.parse() 함수를 사용해서
+  // 다시 원래의 배열 + 객체 형태로 변환하는 거고요.
+
+  // localStorage 장점
+  // - 브라우저를 닫아도 데이터가 유지돼요.
+  // - 간단한 데이터 저장에 좋아요. (최근 검색 기록, 최근 본 상품목록, 테마설정(다크모드), 언어 설정 등 )
+  // - 백엔드 없이도 데이터 저장 가능
+  
+  // 단점
+  // - 용량 제한이 있어요 (보통 5MB 정도).
+  // - 보안에 민감한 데이터는 저장하지 않는 게 좋아요. 
+  
+
+
 
 
   // 2. TodoInput이 새로운 할 일을 추가하면 이 함수 실행
@@ -228,3 +282,22 @@ export default App
 // ]
 // isEditing → 수정 모드 여부 (true/false)
 
+
+// 7. 로컬 스토리지에 할일 목록 저장하기
+
+// 로컬 스토리지란?
+// - 웹 브라우저에 데이터를 저장하는 공간
+// - key-value 쌍으로 데이터 저장
+// - 브라우저를 닫아도 데이터 유지
+// - 용량 제한 있음 (보통 5MB 정도)
+
+// - 페이지 새로고침해도 할일 목록 유지하기
+// - localStorage 사용
+// - todos 상태가 바뀔 때마다 localStorage에 저장
+// - 앱 처음 실행 시 localStorage에서 불러오기
+
+// localStorage 사용법
+// 1. 저장: localStorage.setItem("키", "값");
+// 2. 불러오기: localStorage.getItem("키");
+// 3. 삭제: localStorage.removeItem("키");
+// 4. 전체삭제: localStorage.clear();
