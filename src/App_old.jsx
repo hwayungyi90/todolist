@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
-import { TodoContext } from './contexts/TodoContext'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
@@ -227,26 +226,24 @@ function App() {
 
 
   return (
-    <TodoContext.Provider value={{ deleteTodo, toggleTodo, toggleEditMode, updateTodo }}>
-      <div className='app'>
+    <div className='app'>
+
+      {/* useEffect 설명 시 사용 */}
+      {/* <div>
+        <button onClick={handleCountUpdate}>업데이트</button>
+        <p> 카운트: {count}</p> 
+      </div> */}
 
 
-        {/* TodoList  */}
-        <h1 className='title'>Todo List(할일)</h1>
+      {/* TodoList  */}
+      <h1 className='title'>Todo List(할일)</h1>
 
-        <div className='contents'>
-          <TodoInput onAddTodo={addTodo} />
-          <TodoList 
-          todos={todos} 
-          // onDelete={deleteTodo} 
-          // onToggle={toggleTodo} 
-          // onEdit={toggleEditMode} 
-          // onUpdate={updateTodo} 
-          />
+      <div className='contents'>
+        <TodoInput onAddTodo={addTodo} />
+        <TodoList todos={todos} onDelete={deleteTodo} onToggle={toggleTodo} onEdit={toggleEditMode} onUpdate={updateTodo} />
 
-        </div>
       </div>
-    </TodoContext.Provider>
+    </div>
   )
 }
 
